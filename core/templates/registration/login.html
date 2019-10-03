@@ -1,0 +1,29 @@
+{%extends 'registration/frame.html' %}
+
+{%block form%}
+<form id="booking-form" method="POST">
+    <h2>Login</h2>
+    {% if messages %}
+    {% for message in messages %}
+    <h4 {% if message.tags %} class="text-{{ message.tags }}" {% endif %}>{{ message }}</h4>
+    {% endfor %}
+    {% endif %}
+    {% if form.errors %}
+    <h1>Invalid Credentials</h1>
+    {% endif  %}
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for field in form %}
+    <div class="form-group form-input">
+        {{ field }}
+        <label for="name" class="form-label">{{ field.label_tag }}</label>
+    </div>
+    {% endfor %}
+    <div class="form-submit">
+        <input type="submit" value="Login" class="submit" id="submit" name="submit" />
+        <a href="{% url 'register' %}" class="vertify-booking">No Profile? Register</a>
+    </div>
+</form>
+
+
+{%endblock%}

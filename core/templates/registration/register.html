@@ -1,0 +1,36 @@
+{%extends 'registration/frame.html' %}
+
+{%block form%}
+<form id="booking-form" method="POST">
+    <h2>Create A Profile</h2>
+    {% if form.errors %}
+    {% for error in form.non_field_errors %}
+    <div class="alert alert-danger">
+        <strong>{{ error|escape }}</strong>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for field in form %}
+    {% if form.errors %}
+
+    {% for error in field.errors %}
+    <strong>{{ error|escape }}</strong>
+    {% endfor %}
+    {% endif %}
+
+    <div class="form-group form-input">
+        {{ field }}
+        <label for="name" class="form-label">{{ field.label_tag }}</label>
+    </div>
+    {% endfor %}
+
+    <div class="form-submit">
+        <input type="submit" value="Register" class="submit" id="submit" name="submit" />
+        <a href="{% url 'home' %}" class="vertify-booking">Already Registered? Login</a>
+    </div>
+</form>
+
+
+{%endblock%}
