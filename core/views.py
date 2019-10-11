@@ -139,7 +139,7 @@ def send_email(request):
         is_multiple=True)
     try:
         sg = SendGridAPIClient(
-            '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')
+            '')
         response = sg.send(message)
         messages.add_message(request, messages.SUCCESS,
                          'Message Successfully')
